@@ -5,7 +5,7 @@ Kriging is a very useful interpolation method, and we will see an illustration o
 
 The main library that I am using is <code>rlibkriging</code>, the Github link of which is <link>https://github.com/libKriging/libKriging</link>.
 Feel free to consult the documentation of this library at <link>https://libkriging.readthedocs.io/en/latest/</link>, you will find many details about it, the complete mathematical formalization and 
-the way to install it in python if you want to.
+the way to install it in python or matlab if you want to.
 
 
 ## Installation of packages 
@@ -13,20 +13,18 @@ the way to install it in python if you want to.
 Firstly you will have to install packages such as the main one : <code>rlibKriging</code> or 
 others like <code>ggplot2</code> or <code>shinythemes</code>. Once R is opened on your computer you can write this down :
 
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip3 install pylibkriging"><pre>install.packages("rlibkriging")</pre></div>
-
-
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip3 install pylibkriging"><pre>install.packages("shiny")</pre></div>
-
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip3 install pylibkriging"><pre>install.packages("ggplot2")</pre></div>
-
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip3 install pylibkriging"><pre>install.packages("shinythemes")</pre></div>
-
+```R
+# in R
+install.packages("rlibkriging")
+install.packages("shiny")
+install.packages("ggplot2")
+install.packages("shinythemes")
+```
 Then the packages are already imported in the code.
 
 ## Illustration of kriging
 
-Once the packages are correctly installed, you can execute the code and will see this window Opened ;
+Once the packages are correctly installed, you can execute the code and will see this window Opened :
 
 ![texte alternatif](https://lh3.googleusercontent.com/C3EubzdFZ8g9PB1woj-RIBkcoM2Rb3BEteecYwTIYFypFHsxf8JrMJgC5qReV3qdTSuQyX1TM346rQ7mB00PO3hhJ6gTCoDEZKNByYgAh8k_YO05yW3QlapqZlipUh1ZAHnnI4v7f1yxXpeLd_GfRSKl6Q9LzKgfWES1st1NlKpmjp3ledymjWeRZMIUICCVNFJbH8GwEHR3_GaTWcTRaC8AU4T94rEIePNm7cVTB9c27GpIQSJgJBn5qnVQ0mpxKLITmx3n0kTlp2AAv29yWjs8AiU9KyTV15VFctaEdL7_oPlVEhqgYEG3ipOpIaLoa8sjQm5XMbq8NI4EYZa49wxiURMyhJkw5owiB35mJFxOGbbF7Kg6dTn6-N5j9z1ucqUirJ9y5vvxcvR4p0qKZAxKssvZtVb0t7HykJHh33e8FRYQjSGpajZ9JgcKorJbWNBgZcpzXtgSUSzhBCYMIcfnV-TO-AZbmQsSDjsEFP1-PL6pOwNOd7nVL4bgawShMOJim26F6od6rORRp5BZUEZTb4h2f2skx8DOUaTZnN6zrKiqKyhx7FTBgPfksLk3e9RNeXWHyORNfwU9jALsv1vfXLi2AcrDGTpwnw0GZFzBc9lN532po5EQKxm3D8iczEiI-ZtXNU08ibcn4KBhtxZ3KNY-ZSCzWDwUede2k0AnvJw8XDl-Z9aDrjs0oGvrVcd-leT3Rrsx_rtIUx8x0KAjNIIxCU1kVjo-D9V8QOaxHNzVcxHtD2ogYCkT9qwf6AWyQDAlsXA6_3pdKpqdJW3oAGyZ6hXJABfhGBs1c0XebSR7aoH1kQlESQeLy9GRrYzqUntjHB-mK6vXnO0DM0u-X9z5_Ey2OVTN5mpNm5p2QOzvFki1VeWBqKjsT2Y-SmOK_b-VomR0nNt-aD27VEEBiO8PO74xhCjAbL5irz2-83J6=w1871-h945-s-no?authuser=0)
 
@@ -47,8 +45,8 @@ Now, you can chose an **Estimation method** and run **Parameters estimation**, y
 
 #### No optimisation method
 
-If you chose **None** in Optimisation method, the model will be fitted with the range and the standard Variance all along the fitting (NB : the Std has 
-no impact on the result which is a problem being fixed in the *Kriging* function. 
+If you chose **None** in Optimisation method, the model will be fitted with the range and the standard Variance that you give all along the fitting (NB : the Std has 
+no impact on the result which is a problem being fixed in the *Kriging* function). 
 
 In One dimension here, the correlation terms in the GP are given by the formula :
 
@@ -66,9 +64,6 @@ You can add some Noise on your datas by using **Nugget effect**
 <br>
 
 The known datas are now : $y_{nugget}=y+C \epsilon$ where $\epsilon \sim \mathcal{N}(0,I_n)$ and $C$ is the **nugget parameter**.
-
-<br>
-
 You can also change the random seed and this will affect the distributions of the $\epsilon$.
 
 ### Have fun !
