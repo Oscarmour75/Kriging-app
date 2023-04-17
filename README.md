@@ -24,7 +24,7 @@ Then the packages are already imported in the code.
 
 Once the packages are correctly installed, you can execute the code and will see this window Opened :
 
-![texte alternatif](https://github.com/Oscarmour75/Kriging-app/blob/main/app1.png?raw=true)
+![](https://github.com/Oscarmour75/Kriging-app/blob/main/Images/app1.png?raw=true)
 
 
 This will be very easy to understand if you are familiar with Kriging.
@@ -57,7 +57,7 @@ $$C_\xi = Cov (x,x')= \sigma^2 \kappa (\frac{x-x'}{\theta})$$
 
 You can add some Noise on your datas by using **Nugget effect**
 
-![texte alternatif](![image](https://user-images.githubusercontent.com/130451265/232512957-a58fe286-8380-4ba9-b530-2ad6d9e6ec1c.png)
+![](https://github.com/Oscarmour75/Kriging-app/blob/main/Images/app2.png?raw=true)
 
 
 <br>
