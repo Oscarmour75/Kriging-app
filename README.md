@@ -1,12 +1,10 @@
-# Kriging-app in R
+# Kriging app in R
 
 Used in many applications such as Geostatistics, environemental modeling or even Mineral exploration,
 Kriging is a very useful interpolation method, and we will see an illustration of it in 1D.
 
 The main library that I am using is <code>rlibkriging</code>, the Github link of which is <link>https://github.com/libKriging/libKriging</link>.
-Feel free to consult the documentation of this library at <link>https://libkriging.readthedocs.io/en/latest/</link>, you will find many details about it, the complete mathematical formalization and 
-the way to install it in python or matlab if you want to.
-
+Feel free to consult the documentation of this library at <link>https://libkriging.readthedocs.io/en/latest/</link>, for many details about it, including the complete mathematical formalization and how to install it in Python or Matlab
 
 ## Installation of packages 
 
@@ -68,4 +66,4 @@ You can also change the random seed and this will affect the distributions of th
 
 ### Have fun !
 
-We have know seen everything you can do with this Kriging App so feel free to play with it.
+We have now seen everything you can do with this Kriging App so feel free to play with it.
