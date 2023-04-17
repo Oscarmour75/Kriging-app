@@ -31,7 +31,9 @@ ui=fluidPage(
             condition = "input.P == true",
             sliderInput("par", "Nugget parameter", min = 0, max = 1, value = 0.5,step=0.001)
           )
-        )
+        ),
+        sliderInput("seed", "Random seed", min = 0, max = 100, value = 0.5,step=1)
+        
       )
     )
     ,
@@ -60,7 +62,6 @@ server=function(input,output,session){
     as.matrix(seq(0, 1,, input$N))
   })
   
-  
   estrec <- reactive({
     if (input$est=="Log-Likelihood"){
       "LL"
@@ -86,10 +87,13 @@ server=function(input,output,session){
   })
   
   ynugg <- reactive({
+    set.seed(input$seed)
     ma_fonction()(X()) + input$par/5 * rnorm(nrow(X()))
   })
   
   k_Rnugg <- reactive({
+    set.seed(input$seed)
+    
     NuggetKriging(ynugg(), X(),optim=input$Opt,kernel=input$kern,parameters=parameters(),objective=estrec())
   })
   
@@ -131,12 +135,15 @@ server=function(input,output,session){
     isolate({
       
       if(input$P==FALSE) {
+        set.seed(input$seed)
+        
         p <- predict(k_R(), x, TRUE, FALSE)
         
         plot(ma_fonction())
         points(X(), y(),col="red")
         lines(x, p$mean, col = 'blue')
         polygon(c(x, rev(x)), c(p$mean - 2* p$stdev, rev(p$mean + 2 * p$stdev)), border = NA, col = rgb(0, 0, 1, 0.2))
+        set.seed(input$seed)
         
         s <- simulate(k_R(), nsim = 10, seed = 123, x = x)
         matplot(x, s, col = rgb(0, 0, 1, 0.2), type = 'l', lty = 1, add = TRUE)
@@ -144,12 +151,15 @@ server=function(input,output,session){
       } 
       
       if(input$P==TRUE) {
+        set.seed(input$seed)
+        
         p <- predict(k_Rnugg(), x, TRUE, FALSE)
         
         plot(ma_fonction())
         points(X(), ynugg(),col="red")
         lines(x, p$mean, col = 'blue')
         polygon(c(x, rev(x)), c(p$mean - 2* p$stdev, rev(p$mean + 2 * p$stdev)), border = NA, col = rgb(0, 0, 1, 0.2))
+        set.seed(input$seed)
         
         s <- simulate(k_Rnugg(), nsim = 10, seed = 123, x = x)
         matplot(x, s, col = rgb(0, 0, 1, 0.2), type = 'l', lty = 1, add = TRUE)
