@@ -8,7 +8,7 @@ ui=fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      selectInput("kern","Kernel",choices=list(Gaussian="gauss",Exponential="exp",Matern="matern3_2",Materna="matern5_2")),
+      selectInput("kern","Kernel",choices=list(Gaussian="gauss",Exponential="exp",Materntrois="matern3_2",Materncinq="matern5_2")),
       sliderInput(inputId='N',label='Number of data',value=5,min=2,max=10,step=1),
       selectInput("Opt","Optimisation method",choices=c("BFGS","Newton","none")),
       conditionalPanel(
