@@ -8,7 +8,7 @@ ui=fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      selectInput("kern","Kernel",choices=c("gauss","exp","matern3_2","matern5_2")),
+      selectInput("kern","Kernel",choices=list(Gaussian="gauss",Exponential="exp",Matern="matern3_2",Materna="matern5_2")),
       sliderInput(inputId='N',label='Number of data',value=5,min=2,max=10,step=1),
       selectInput("Opt","Optimisation method",choices=c("BFGS","Newton","none")),
       conditionalPanel(
@@ -21,7 +21,7 @@ ui=fluidPage(
         sliderInput(inputId='thetaopt',label='Initial range',value=0.2,min=0,max=1,step=0.001),
         sliderInput(inputId='sigopt',label='Initial standard deviation',value=0.5,min=0,max=1,step=0.001),
         actionButton("bout", "Parameters estimation"),
-        radioButtons("est","Estimation method",c("LL","LOO","LMP")),
+        radioButtons("est","Estimation method",list(LogLikelihood="LL",LeaveOneOut="LOO",LogMarginalPosterior="LMP")),
         print("No nugget effect allowed for LOO"),
         
         conditionalPanel(
