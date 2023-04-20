@@ -12,12 +12,12 @@ ui <- fluidPage(
       sliderInput(inputId='N',label='Number of data',value=5,min=2,max=10,step=1),
       selectInput("opt", "Optimisation method", choices=list(BFGS="BFGS",Newton="Newton",None="none")),
       conditionalPanel(
-        condition = "input.Opt == 'none'",
+        condition = "input.opt == 'none'",
         sliderInput(inputId='theta',label='Range',value=0.2,min=0,max=1,step=0.001),
         sliderInput(inputId='sig',label='Standard Variance',value=0.5,min=0,max=1,step=0.001)
       ),
       conditionalPanel(
-        condition = "input.Opt != 'none'",
+        condition = "input.opt != 'none'",
         sliderInput(inputId='thetaopt',label='Initial range',value=0.2,min=0,max=1,step=0.001),
         sliderInput(inputId='sigopt',label='Initial standard deviation',value=0.5,min=0,max=1,step=0.001),
         actionButton("bout", "Parameters estimation"),
@@ -42,7 +42,7 @@ ui <- fluidPage(
           )
           
         )
-
+        
       )
     ),
     mainPanel(
@@ -55,7 +55,7 @@ ui <- fluidPage(
       h4(textOutput("mod2")),
       h4(textOutput("mod")),
       h5("Author : Moureaux Oscar"),
-
+      
     )
   )
   
@@ -192,20 +192,30 @@ server=function(input,output,session){
   output$mod3 <- renderText({
     paste( "_")
   })
+  
   output$mod2 <- renderText({
     
     input$bout
     input$seed
     input$run2
     isolate({
-      if (input$P){
-        paste("The estimated final range is :", round(kR0nugg()$theta(), 3), sep = " ")
+      
+      
+      if (input$opt=="none"){
+        paste("The chosen range is " , round(input$theta,2),sep= " ")
       }
       else{
-        paste("The estimated final range is :", round(kR0()$theta(), 3), sep = " ")
+        if (input$P){
+          paste("The estimated final range is :", round(kR0nugg()$theta(), 3), sep = " ")
+        }
+        else{
+          paste("The estimated final range is :", round(kR0()$theta(), 3), sep = " ")
+        }
+        
       }
+      
+      
     })
-    
     
   })
   
@@ -215,16 +225,22 @@ server=function(input,output,session){
     input$seed
     input$run2
     isolate({
-      if (input$P){
-        paste("The estimated final deviation is :", round(kR0nugg()$sigma2(),3), sep = " ")
+      if (input$opt=="none"){
+        paste("The chosen deviation is " , round(input$sig,2),sep= " ")
       }
       else{
-        paste("The estimated final deviation is :", round(kR0()$sigma2(),3), sep = " ")
+        if (input$P){
+          paste("The estimated final deviation is :", round(kR0nugg()$sigma2(),3), sep = " ")
+        }
+        else{
+          paste("The estimated final deviation is :", round(kR0()$sigma2(),3), sep = " ")
+        }
+        
       }
+      
     })
+    
   })
-  
+
 }
-
 shinyApp(ui=ui, server=server)
-
